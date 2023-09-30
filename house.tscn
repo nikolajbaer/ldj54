@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cro2ph1jtvqpx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5bco"]
+albedo_color = Color(0.713726, 0.54902, 0.227451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dey78"]
+material = SubResource("StandardMaterial3D_s5bco")
+size = Vector3(5, 2, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sfbu3"]
+albedo_color = Color(0.0784314, 0.0470588, 0.00392157, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_pp7o4"]
+material = SubResource("StandardMaterial3D_sfbu3")
+size = Vector3(6, 1, 5.1)
+
+[node name="House" type="MeshInstance3D"]
+transform = Transform3D(0.716152, 0, 0, 0, 1, 0, 0, 0, 1, -13.1975, 1.01116, -6.03335)
+mesh = SubResource("BoxMesh_dey78")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.49631, 0)
+mesh = SubResource("PrismMesh_pp7o4")

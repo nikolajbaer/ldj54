@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1olobxgwklt1"]
+
+[ext_resource type="PackedScene" uid="uid://cro2ph1jtvqpx" path="res://house.tscn" id="1_bfd3a"]
+[ext_resource type="PackedScene" uid="uid://dohqp1lfb65gc" path="res://pickup_zone.tscn" id="2_pqx6g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hd3a8"]
+size = Vector3(1, 0.1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ye1jj"]
+albedo_color = Color(0.196078, 0.196078, 0.196078, 1)
+uv1_scale = Vector3(25, 25, 25)
+uv2_scale = Vector3(10, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_836ku"]
+material = SubResource("StandardMaterial3D_ye1jj")
+size = Vector3(1, 0.1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbngp"]
+albedo_color = Color(0.0352941, 0.333333, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lsmc1"]
+material = SubResource("StandardMaterial3D_pbngp")
+size = Vector3(10, 0.1, 20)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e5m47"]
+points = PackedVector3Array(5, 0.05, 10, 5, -0.05, 10, 5, 0.05, -10, -5, 0.05, 10, -5, -0.05, 10, 5, -0.05, -10, -5, 0.05, -10, -5, -0.05, -10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_acvnm"]
+size = Vector3(1, 10, 20)
+
+[node name="Block1" type="Node3D"]
+
+[node name="Curb" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.70016, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Curb"]
+shape = SubResource("BoxShape3D_hd3a8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Curb"]
+mesh = SubResource("BoxMesh_836ku")
+
+[node name="grass" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2015, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="grass"]
+mesh = SubResource("BoxMesh_lsmc1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grass"]
+shape = SubResource("ConvexPolygonShape3D_e5m47")
+
+[node name="Bounds" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4757, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds"]
+shape = SubResource("BoxShape3D_acvnm")
+
+[node name="House" parent="." instance=ExtResource("1_bfd3a")]
+transform = Transform3D(0.716152, 0, 0, 0, 1, 0, 0, 0, 1, -12.4992, 1.01116, -6.03335)
+
+[node name="House2" parent="." instance=ExtResource("1_bfd3a")]
+transform = Transform3D(0.716152, 0, 0, 0, 1, 0, 0, 0, 1, -12.4992, 1.01116, 2.85218)
+
+[node name="PickupZone" parent="." instance=ExtResource("2_pqx6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0, 0)

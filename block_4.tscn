@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://ddvcv6d84ba80"]
+
+[ext_resource type="PackedScene" uid="uid://cro2ph1jtvqpx" path="res://house.tscn" id="1_c5d71"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ye1jj"]
+albedo_color = Color(0.196078, 0.196078, 0.196078, 1)
+uv1_scale = Vector3(25, 25, 25)
+uv2_scale = Vector3(10, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5hdgm"]
+material = SubResource("StandardMaterial3D_ye1jj")
+size = Vector3(1, 0.1, 14)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbngp"]
+albedo_color = Color(0.0352941, 0.333333, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ctpgn"]
+material = SubResource("StandardMaterial3D_pbngp")
+size = Vector3(10, 0.1, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3egpq"]
+size = Vector3(5, 10, 24.799)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nywcy"]
+albedo_color = Color(0.196078, 0.196078, 0.196078, 1)
+uv1_scale = Vector3(25, 25, 25)
+uv2_scale = Vector3(10, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eipj1"]
+material = SubResource("StandardMaterial3D_nywcy")
+size = Vector3(1, 0.1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugxtf"]
+albedo_color = Color(0.0352941, 0.333333, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d5j6q"]
+material = SubResource("StandardMaterial3D_ugxtf")
+size = Vector3(10, 0.1, 30)
+
+[node name="Block1" type="Node3D"]
+
+[node name="Curb" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Curb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.00339)
+mesh = SubResource("BoxMesh_5hdgm")
+
+[node name="grass" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 2.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="grass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+mesh = SubResource("BoxMesh_ctpgn")
+
+[node name="Bounds" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.601459, 8.18421)
+shape = SubResource("BoxShape3D_3egpq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.5307, 0.601459, 16.9382)
+shape = SubResource("BoxShape3D_3egpq")
+
+[node name="House" parent="." instance=ExtResource("1_c5d71")]
+transform = Transform3D(0.716152, 0, 0, 0, 1, 0, 0, 0, 1, 12.2786, 1.011, -6.033)
+
+[node name="House2" parent="." instance=ExtResource("1_c5d71")]
+transform = Transform3D(0.716152, 0, 0, 0, 1, 0, 0, 0, 1, 12.2786, 1.011, 5.51586)
+
+[node name="House3" parent="." instance=ExtResource("1_c5d71")]
+transform = Transform3D(-3.1304e-08, 0, -1, 0, 1, 0, 0.716152, 0, -4.37114e-08, 2.36957, 1.011, 11.5542)
+
+[node name="House4" parent="." instance=ExtResource("1_c5d71")]
+transform = Transform3D(-3.1304e-08, 0, -1, 0, 1, 0, 0.716152, 0, -4.37114e-08, -8.47393, 1.011, 11.8498)
+
+[node name="Curb3" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.91492, 0, 4.46178)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Curb3"]
+mesh = SubResource("BoxMesh_eipj1")
+
+[node name="grass2" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="grass2"]
+mesh = SubResource("BoxMesh_d5j6q")
