@@ -1,0 +1,301 @@
+[gd_scene load_steps=15 format=3 uid="uid://wps2a7uaehoy"]
+
+[ext_resource type="Script" path="res://truk.gd" id="1_w3x0k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gbdds"]
+size = Vector3(0.671329, 1.21879, 2.75)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cye7t"]
+albedo_color = Color(0.494118, 0.266667, 0.819608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bqpto"]
+material = SubResource("StandardMaterial3D_cye7t")
+size = Vector3(1, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oihua"]
+albedo_color = Color(0.576471, 0.447059, 0.00784314, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_07wne"]
+material = SubResource("StandardMaterial3D_oihua")
+size = Vector3(1, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ays0p"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7nf36"]
+material = SubResource("StandardMaterial3D_ays0p")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.25
+radial_segments = 32
+
+[sub_resource type="BoxMesh" id="BoxMesh_p6ktf"]
+size = Vector3(0.1, 0.1, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y6ebd"]
+points = PackedVector3Array(0.05, 0.05, 0.25, 0.05, -0.05, 0.25, 0.05, 0.05, -0.25, -0.05, 0.05, 0.25, -0.05, -0.05, 0.25, 0.05, -0.05, -0.25, -0.05, 0.05, -0.25, -0.05, -0.05, -0.25)
+
+[sub_resource type="Animation" id="Animation_6h2xk"]
+resource_name = "extend"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.741, 0.25, 0.413), Vector3(-1.026, 0.25, 0.413)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody3D/Arm2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.881723, 0), Vector3(0, 0.881723, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody3D/Arm1:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.986984, 0), Vector3(0, -0.986984, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_podju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.741, 0.25, 0.413)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody3D/Arm2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.881723, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody3D/Arm1:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.986984, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3pqbn"]
+resource_name = "retract"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.7, 2.1, 2.4, 2.7, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.026, 0.25, 0.413), Vector3(-0.691, 0.25, 0.413), Vector3(-0.690797, 1.67704, 0.412957), Vector3(-0.490797, 1.69168, 0.412957), Vector3(-0.490797, 1.69168, 0.412957), Vector3(-0.690797, 1.67704, 0.412957), Vector3(-0.691, 0.25, 0.413)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.7, 2.1, 2.4, 2.7, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -1.5708), Vector3(0, 0, -2.21918), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody3D/Arm2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 3.2, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.881723, 0), Vector3(0, -0.0612261, 0), Vector3(0, -0.0612261, 0), Vector3(0, 0.881723, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody3D/Arm1:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 3.2, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.986984, 0), Vector3(0, 0.127636, 0), Vector3(0, 0.127636, 0), Vector3(0, -0.986984, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8q4ni"]
+_data = {
+"RESET": SubResource("Animation_podju"),
+"extend": SubResource("Animation_6h2xk"),
+"retract": SubResource("Animation_3pqbn")
+}
+
+[node name="Truk" type="VehicleBody3D"]
+mass = 100.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.25, 0)
+script = ExtResource("1_w3x0k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_gbdds")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.20638, 0, 0, 0, 1.09329, 0, 0, 0, 1, 0, 1.04893, -0.342455)
+mesh = SubResource("BoxMesh_bqpto")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.971617, -2.93566e-05, 0.000415449, 3.21965e-05, 0.831492, 0.000558334, -0.00123493, -0.0014202, 0.326882, 0.00326204, 0.828375, 1.01288)
+mesh = SubResource("BoxMesh_07wne")
+
+[node name="FrontLeft" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, 1)
+use_as_steering = true
+wheel_radius = 0.25
+suspension_stiffness = 100.0
+damping_compression = 5.0
+damping_relaxation = 3.0
+
+[node name="Wheel" type="MeshInstance3D" parent="FrontLeft"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_7nf36")
+
+[node name="FrontRight" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.25, 1)
+use_as_steering = true
+wheel_radius = 0.25
+suspension_stiffness = 100.0
+damping_compression = 5.0
+damping_relaxation = 3.0
+
+[node name="Wheel" type="MeshInstance3D" parent="FrontRight"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_7nf36")
+
+[node name="RearLeft" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, -1)
+use_as_traction = true
+wheel_radius = 0.25
+suspension_stiffness = 100.0
+damping_compression = 5.0
+damping_relaxation = 3.0
+
+[node name="Wheel" type="MeshInstance3D" parent="RearLeft"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_7nf36")
+
+[node name="RearRight" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.25, -1)
+use_as_traction = true
+wheel_radius = 0.25
+suspension_stiffness = 100.0
+damping_compression = 5.0
+damping_relaxation = 3.0
+
+[node name="Wheel" type="MeshInstance3D" parent="RearRight"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_7nf36")
+
+[node name="Gripper" type="Node3D" parent="."]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Gripper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.741, 0.25, 0.413)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gripper/CharacterBody3D"]
+mesh = SubResource("BoxMesh_p6ktf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Gripper/CharacterBody3D"]
+shape = SubResource("ConvexPolygonShape3D_y6ebd")
+
+[node name="Arm1" type="Node3D" parent="Gripper/CharacterBody3D"]
+transform = Transform3D(0.551209, 0, -0.834367, 0, 1, 0, 0.834367, 0, 0.551209, 0, 0, -0.226786)
+
+[node name="Arm1" type="CharacterBody3D" parent="Gripper/CharacterBody3D/Arm1"]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 0.999999, 0, -1, 0, -4.37114e-08, -0.197055, 0, -0.050423)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gripper/CharacterBody3D/Arm1/Arm1"]
+mesh = SubResource("BoxMesh_p6ktf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Gripper/CharacterBody3D/Arm1/Arm1"]
+shape = SubResource("ConvexPolygonShape3D_y6ebd")
+
+[node name="Arm2" type="Node3D" parent="Gripper/CharacterBody3D"]
+transform = Transform3D(0.635822, 0, 0.771835, 0, 0.999999, 0, -0.771835, 0, 0.635822, 0.0572356, 0, 0.302872)
+
+[node name="Arm1" type="CharacterBody3D" parent="Gripper/CharacterBody3D/Arm2"]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 0.999999, 0, -1, 0, -4.37114e-08, -0.197055, 0, -0.050423)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gripper/CharacterBody3D/Arm2/Arm1"]
+mesh = SubResource("BoxMesh_p6ktf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Gripper/CharacterBody3D/Arm2/Arm1"]
+shape = SubResource("ConvexPolygonShape3D_y6ebd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gripper"]
+libraries = {
+"": SubResource("AnimationLibrary_8q4ni")
+}
+
+[connection signal="animation_finished" from="Gripper/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
