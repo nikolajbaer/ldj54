@@ -54,8 +54,9 @@ func _on_animation_player_animation_finished(anim_name):
 		grabbing = 0
 
 func _on_drop_zone_body_entered(body):
-	if body.is_in_group("trashcan"):
-		body.get_parent().add_to_group("collected")
+	var parent = body.get_parent()
+	if parent.is_in_group("trashcan") and not parent.is_in_group("collected"):
+		parent.add_to_group("collected")
 		if body.global_transform.basis.y.dot(global_transform.basis.x) > 0:
 			collected.emit(body.global_position)
 		else:

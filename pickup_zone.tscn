@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dohqp1lfb65gc"]
+[gd_scene load_steps=5 format=3 uid="uid://dohqp1lfb65gc"]
 
+[ext_resource type="Script" path="res://pickup_zone.gd" id="1_disee"]
 [ext_resource type="PackedScene" uid="uid://icgldg23jxkk" path="res://car.tscn" id="1_i37kj"]
 [ext_resource type="PackedScene" uid="uid://ds2kj74h24887" path="res://trash_can.tscn" id="2_oekaw"]
 
@@ -7,6 +8,7 @@
 size = Vector3(1.5, 0.2, 2)
 
 [node name="PickupZone" type="Area3D"]
+script = ExtResource("1_disee")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
@@ -26,3 +28,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1866
 
 [node name="TrashCan3" parent="." instance=ExtResource("2_oekaw")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.186689, 0, -1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,5 +1,6 @@
 extends Node3D
 
+
 @onready var points = preload("res://points.tscn")
 
 @onready var camera_pivot = $CameraPivot
@@ -10,6 +11,7 @@ extends Node3D
 
 var elapsed = null
 var score = 0
+var trashcans
 	
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -19,7 +21,9 @@ func _ready():
 	var penalties = get_tree().get_nodes_in_group("penalty")
 	for body in penalties:
 		body.body_entered.connect(_on_penalty.bind(body))
-	var trashcans = get_tree().get_nodes_in_group("trashcanbase")
+	trashcans = get_tree().get_nodes_in_group("trashcan")
+	for trashcan in trashcans:
+		trashcan.knocked_over.connect(_on_knocked_over)
 	
 func _physics_process(delta):
 	if elapsed != null:
@@ -66,7 +70,5 @@ func _on_penalty(body,penalty):
 		penalty.add_to_group("penalty_hit")
 		showScoreChange(-30,penalty.global_position)
 
-func _on_trashcan_sleep(body):
-	if body.sleeping and body.get_parent().is_in_group("collected"):
-		print("Sleeping collected trashcan")
-	
+func _on_knocked_over(position):
+	showScoreChange(-10,position)
