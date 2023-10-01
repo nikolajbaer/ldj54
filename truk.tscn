@@ -324,9 +324,12 @@ stream = ExtResource("3_opsfd")
 
 [node name="CollectStartAudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6sn4o")
+volume_db = -13.883
+pitch_scale = 0.86
 
 [node name="RetractAudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_p8osg")
+volume_db = -4.386
 
 [node name="BrakesAudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_aaily")
