@@ -1,34 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://iwwykf6jqgyr"]
+[gd_scene load_steps=16 format=3 uid="uid://iwwykf6jqgyr"]
 
 [ext_resource type="PackedScene" uid="uid://wps2a7uaehoy" path="res://truk.tscn" id="1_tjm0l"]
 [ext_resource type="Script" path="res://root.gd" id="1_yud12"]
-[ext_resource type="Script" path="res://CameraPivot.gd" id="2_tnvou"]
+[ext_resource type="PackedScene" uid="uid://b0jmisuaujlne" path="res://camera_pivot.tscn" id="2_75wi6"]
+[ext_resource type="PackedScene" uid="uid://cvmf1l0bkardu" path="res://ground.tscn" id="3_m18w7"]
 [ext_resource type="PackedScene" uid="uid://mtbgpve7sf4a" path="res://block_dev.tscn" id="4_c5na7"]
-[ext_resource type="PackedScene" uid="uid://cglm6c05plgc2" path="res://points.tscn" id="6_4f8v3"]
 [ext_resource type="PackedScene" uid="uid://dohqp1lfb65gc" path="res://pickup_zone.tscn" id="7_1dxwn"]
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xvonk"]
-
-[sub_resource type="Gradient" id="Gradient_a6cyj"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_43uyj"]
-frequency = 0.2
-metadata/_preview_in_3d_space_ = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4553l"]
-seamless = true
-color_ramp = SubResource("Gradient_a6cyj")
-noise = SubResource("FastNoiseLite_43uyj")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eojsu"]
-albedo_color = Color(0.105882, 0.105882, 0.105882, 1)
-albedo_texture = SubResource("NoiseTexture2D_4553l")
-uv1_scale = Vector3(100, 100, 100)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_t1ij8"]
-lightmap_size_hint = Vector2i(5002, 5002)
-material = SubResource("StandardMaterial3D_eojsu")
-size = Vector2(100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v7o7y"]
 size = Vector3(6, 2, 6)
@@ -41,14 +18,50 @@ albedo_color = Color(0.478431, 0.380392, 0, 0.0509804)
 material = SubResource("StandardMaterial3D_jbeul")
 size = Vector3(6, 2, 6)
 
+[sub_resource type="Animation" id="Animation_5vbp1"]
+resource_name = "start_game"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iadv6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iw2uo"]
+_data = {
+"RESET": SubResource("Animation_iadv6"),
+"start_game": SubResource("Animation_5vbp1")
+}
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m3ae3"]
 
-[sub_resource type="Sky" id="Sky_unquq"]
+[sub_resource type="Sky" id="Sky_76w5e"]
 sky_material = SubResource("ProceduralSkyMaterial_m3ae3")
 
 [sub_resource type="Environment" id="Environment_0uwxr"]
 background_mode = 2
-sky = SubResource("Sky_unquq")
+sky = SubResource("Sky_76w5e")
 
 [node name="root" type="Node3D"]
 script = ExtResource("1_yud12")
@@ -58,28 +71,10 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 0.327086, 0.944995, 0, -0.944995, 0.327086, 0, 6.45612, 0)
 shadow_enabled = true
 
-[node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2789, 0, -14.7494)
-script = ExtResource("2_tnvou")
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(-1, 1.83839e-15, -8.74228e-08, -4.28031e-08, 0.871941, 0.489611, 7.62275e-08, 0.489611, -0.871941, 0, 4.51183, -4.19438)
-current = true
-
-[node name="Timer" type="Timer" parent="CameraPivot"]
-one_shot = true
-
 [node name="Truk" parent="." instance=ExtResource("1_tjm0l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5839, -7.62939e-06, -14.4859)
 
-[node name="Ground" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("WorldBoundaryShape3D_xvonk")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("PlaneMesh_t1ij8")
-skeleton = NodePath("../..")
+[node name="Ground" parent="." instance=ExtResource("3_m18w7")]
 
 [node name="BlockDev" parent="." instance=ExtResource("4_c5na7")]
 
@@ -121,17 +116,124 @@ offset_bottom = 31.0
 
 [node name="Score" type="Label" parent="HUD"]
 layout_mode = 0
-offset_left = 1053.0
+offset_left = 1028.0
 offset_top = 4.0
 offset_right = 1146.0
-offset_bottom = 27.0
+offset_bottom = 30.0
+text = "Score: 0"
 
-[node name="points" parent="HUD" instance=ExtResource("6_4f8v3")]
+[node name="StartText" type="Label" parent="HUD"]
+visible = false
+layout_mode = 0
+offset_left = 351.0
+offset_top = 225.0
+offset_right = 785.0
+offset_bottom = 407.0
+text = "Collect all the trash on this block as quickly as you can!
+
+The timer starts when you leave the yellow start zone.
+
+Watch out for cars, and try not to knock over trash cans!
+
+W/A/S/D or Arrow keys to move, Spacebar to pick up."
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
+libraries = {
+"": SubResource("AnimationLibrary_iw2uo")
+}
+
+[node name="ScorePanel" type="Panel" parent="HUD"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 196.0
+offset_right = 820.0
+offset_bottom = 435.0
+
+[node name="Label" type="Label" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 18.0
+offset_right = 373.0
+offset_bottom = 51.0
+text = "Round Complete! "
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 110.0
+offset_right = 239.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 24
+text = "Your Score: "
+
+[node name="Score" type="Label" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 110.0
+offset_right = 354.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 24
+text = "0000000"
+
+[node name="Label3" type="Label" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 60.0
+offset_right = 234.0
+offset_bottom = 86.0
+text = "Time Bonus:"
+
+[node name="TimeScore" type="Label" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 60.0
+offset_right = 352.0
+offset_bottom = 86.0
+text = "+123"
+
+[node name="Label4" type="Label" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 87.0
+offset_right = 230.0
+offset_bottom = 113.0
+text = "Pickup Bonus:"
+
+[node name="CanScore" type="Label" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 87.0
+offset_right = 352.0
+offset_bottom = 113.0
+text = "+123"
+
+[node name="Button" type="Button" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 156.0
+offset_right = 215.0
+offset_bottom = 203.0
+text = "Restart"
+
+[node name="Button2" type="Button" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 156.0
+offset_right = 405.0
+offset_bottom = 203.0
+text = "Exit
+"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0uwxr")
 
-[connection signal="timeout" from="CameraPivot/Timer" to="CameraPivot" method="_on_timer_timeout"]
+[node name="CameraPivot" parent="." instance=ExtResource("2_75wi6")]
+
 [connection signal="collected" from="Truk" to="." method="_on_truk_collected"]
 [connection signal="body_entered" from="StartZone" to="." method="_on_start_zone_body_entered"]
 [connection signal="body_exited" from="StartZone" to="." method="_on_start_zone_body_exited"]
+[connection signal="animation_finished" from="HUD/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="HUD/ScorePanel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HUD/ScorePanel/Button2" to="." method="_on_button_2_pressed"]

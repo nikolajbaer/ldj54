@@ -1,0 +1,141 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwphobm22upuh"]
+
+[ext_resource type="Script" path="res://intro.gd" id="1_t3a2c"]
+[ext_resource type="PackedScene" uid="uid://wps2a7uaehoy" path="res://truk.tscn" id="2_yag37"]
+[ext_resource type="PackedScene" uid="uid://c6g73psk78psh" path="res://arrow.tscn" id="3_3fqnt"]
+[ext_resource type="PackedScene" uid="uid://ds2kj74h24887" path="res://trash_can.tscn" id="3_8put4"]
+[ext_resource type="PackedScene" uid="uid://cvmf1l0bkardu" path="res://ground.tscn" id="4_jjt7k"]
+[ext_resource type="Texture2D" uid="uid://cdjaiocb5ffh7" path="res://trashtruckhero.png" id="6_2f1kk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sbx4n"]
+
+[sub_resource type="Sky" id="Sky_unquq"]
+sky_material = SubResource("ProceduralSkyMaterial_sbx4n")
+
+[sub_resource type="Environment" id="Environment_igkxb"]
+background_mode = 2
+sky = SubResource("Sky_unquq")
+
+[node name="intro" type="Node3D"]
+script = ExtResource("1_t3a2c")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.3572e-08, 0.664383, -0.747392, -3.48812e-09, 0.747392, 0.664383, 1, 3.15555e-08, -3.02479e-08, -5.04883, 3.04645, 0.484138)
+
+[node name="Truk" parent="." instance=ExtResource("2_yag37")]
+transform = Transform3D(0.71747, 0, -0.696589, 0, 1, 0, 0.696589, 0, 0.71747, 0, 0, 0)
+sleeping = true
+active = false
+
+[node name="Fwd" parent="Truk" instance=ExtResource("3_3fqnt")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0.5)
+
+[node name="Right" parent="Truk" instance=ExtResource("3_3fqnt")]
+transform = Transform3D(-2.38419e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, -2.38419e-07, 0, 0, 0.5)
+
+[node name="Left" parent="Truk" instance=ExtResource("3_3fqnt")]
+transform = Transform3D(5.96046e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, 5.96046e-08, 0, 0, 0.5)
+
+[node name="Back" parent="Truk" instance=ExtResource("3_3fqnt")]
+transform = Transform3D(-1.5, 0, 1.19209e-07, 0, 1.5, 0, -1.19209e-07, 0, -1.5, 0, 0, 0.5)
+
+[node name="TrashCan" parent="." instance=ExtResource("3_8put4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12607, -0.0880973, -0.503871)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control"]
+offset_left = 457.0
+offset_top = 493.0
+offset_right = 664.0
+offset_bottom = 559.0
+text = "START GAME"
+
+[node name="Button2" type="Button" parent="Control"]
+offset_left = 458.0
+offset_top = 572.0
+offset_right = 552.0
+offset_bottom = 615.0
+text = "EXIT"
+
+[node name="Button3" type="Button" parent="Control"]
+offset_left = 569.0
+offset_top = 572.0
+offset_right = 663.0
+offset_bottom = 615.0
+disabled = true
+text = "SCORES"
+
+[node name="Right" type="Node2D" parent="Control"]
+
+[node name="Right" type="Label" parent="Control/Right"]
+offset_left = -198.0
+offset_top = 73.0
+offset_right = -80.0
+offset_bottom = 99.0
+text = "D / Right Arrow"
+
+[node name="Fwd" type="Node2D" parent="Control"]
+
+[node name="Fwd" type="Label" parent="Control/Fwd"]
+offset_left = 106.0
+offset_top = 74.0
+offset_right = 209.0
+offset_bottom = 100.0
+text = "W / Up Arrow"
+
+[node name="Back" type="Node2D" parent="Control"]
+
+[node name="Back" type="Label" parent="Control/Back"]
+offset_left = -194.0
+offset_top = -48.0
+offset_right = -74.0
+offset_bottom = -22.0
+text = "S / Down Arrow"
+
+[node name="Left" type="Node2D" parent="Control"]
+
+[node name="Left" type="Label" parent="Control/Left"]
+offset_left = 70.0
+offset_top = -51.0
+offset_right = 177.0
+offset_bottom = -25.0
+text = "A / Left Arrow"
+
+[node name="Grab" type="Node2D" parent="Control"]
+
+[node name="Label" type="Label" parent="Control/Grab"]
+offset_left = -99.0
+offset_top = -134.0
+offset_right = 100.0
+offset_bottom = -82.0
+text = "Spacebar
+to grab trashcan
+Try It Now!"
+horizontal_alignment = 1
+
+[node name="Ground" parent="." instance=ExtResource("4_jjt7k")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.327086, 0.944995, 0, -0.944995, 0.327086, 0, 6.45612, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_igkxb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Trashtruckhero" type="Sprite2D" parent="."]
+position = Vector2(570, 462)
+texture = ExtResource("6_2f1kk")
+
+[connection signal="collected" from="Truk" to="." method="_on_truk_collected"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

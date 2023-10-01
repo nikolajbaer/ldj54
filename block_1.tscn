@@ -59,10 +59,6 @@ transform = Transform3D(0.716152, 0, 0, 0, 1, 0, 0, 0, 1, 2.68574, 1.01116, 23.2
 
 [node name="Tree" parent="." instance=ExtResource("2_nn714")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.04214, 0, 17.3303)
-mass = 59.0
-sleeping = true
 
 [node name="Tree2" parent="." instance=ExtResource("2_nn714")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.04214, 0, 8.48628)
-mass = 59.0
-sleeping = true

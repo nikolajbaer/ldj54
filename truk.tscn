@@ -275,7 +275,7 @@ mesh = SubResource("BoxMesh_p6ktf")
 shape = SubResource("ConvexPolygonShape3D_y6ebd")
 
 [node name="Arm1" type="Node3D" parent="Gripper/CharacterBody3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.226786)
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 0, 0, -0.226786)
 
 [node name="Arm1" type="CharacterBody3D" parent="Gripper/CharacterBody3D/Arm1" groups=["truk"]]
 transform = Transform3D(-2.38419e-07, 0, 0.999999, 0, 0.999999, 0, -1, 0, -8.9407e-08, -0.262426, 0, -0.0162884)
@@ -287,7 +287,7 @@ mesh = SubResource("BoxMesh_p6ktf")
 shape = SubResource("ConvexPolygonShape3D_y6ebd")
 
 [node name="Arm2" type="Node3D" parent="Gripper/CharacterBody3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 0.999999, 0, -1, 0, -4.37114e-08, 0.00525606, 0, 0.261344)
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 0.999999, 0, -1, 0, -3.61999e-06, 0.00525606, 0, 0.261344)
 
 [node name="Arm1" type="CharacterBody3D" parent="Gripper/CharacterBody3D/Arm2" groups=["truk"]]
 transform = Transform3D(2.98023e-08, 0, 1, 0, 0.999999, 0, -1, 0, 2.98023e-08, -0.242058, 0, -0.000214338)

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6g73psk78psh"]
+
+[ext_resource type="Material" uid="uid://srptbfp71jtc" path="res://arrow.tres" id="1_2q46d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljxap"]
+material = ExtResource("1_2q46d")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_8bvu0"]
+material = ExtResource("1_2q46d")
+size = Vector3(1.6, 1, 0.1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.13157)
+mesh = SubResource("BoxMesh_ljxap")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 2.12526)
+mesh = SubResource("PrismMesh_8bvu0")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.154855, 2.14202)

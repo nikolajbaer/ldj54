@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0jmisuaujlne"]
+
+[ext_resource type="Script" path="res://CameraPivot.gd" id="1_87ddm"]
+
+[node name="CameraPivot" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2789, 0, -14.7494)
+script = ExtResource("1_87ddm")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 1.83839e-15, -8.74228e-08, -4.28031e-08, 0.871941, 0.489611, 7.62275e-08, 0.489611, -0.871941, 0, 4.51183, -4.19438)
+current = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -12,8 +12,12 @@ extends Node3D
 var elapsed = null
 var score = 0
 var trashcans
+var show_start_text = true
 	
 func _ready():
+	$HUD/StartText.visible = true
+	$HUD/ScorePanel.visible = false
+	$CameraPivot.set_truk(truk)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elapsed = null
 	score = 0
@@ -28,10 +32,9 @@ func _ready():
 func _physics_process(delta):
 	if elapsed != null:
 		elapsed += delta
-	camera_pivot.global_position = truk.global_position
 	if Input.is_action_just_pressed("escape"):
 		# TODO escape to menu
-		get_tree().quit()
+		get_tree().change_scene_to_file('res://intro.tscn')
 	elif Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 
@@ -56,10 +59,32 @@ func _on_start_zone_body_exited(body):
 	if body == truk and elapsed == null:
 		print("Game Started")
 		elapsed = 0
+		$CameraPivot.set_started()
 
 func _on_start_zone_body_entered(body):
 	if body == truk and elapsed != null and elapsed > 5:
 		print("Game Over!")
+		# Add Time bonus
+		
+		var cans = len(get_tree().get_nodes_in_group("trashcan"))
+		var collected = len(get_tree().get_nodes_in_group("collected"))
+		var collect_bonus = 0
+		if collected == cans:
+			collect_bonus = 50
+			
+		var time_bonus = 160 - elapsed
+		if collected < cans*0.8: time_bonus = 0
+		if time_bonus < 0: time_bonus = 0
+		
+		score += time_bonus
+		score += collect_bonus
+					
+		$HUD/ScorePanel/CanScore.text = "%02d" % collect_bonus
+		$HUD/ScorePanel/TimeScore.text = "%02d" % time_bonus
+		$HUD/ScorePanel/Score.text = "%d" % score
+		$HUD/ScorePanel.visible = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		truk.active = false
 		elapsed = null
 
 func _on_truk_collected(position):
@@ -72,3 +97,17 @@ func _on_penalty(body,penalty):
 
 func _on_knocked_over(position):
 	showScoreChange(-10,position)
+
+func _on_animation_player_animation_finished(anim_name):
+	$HUD/StartText.visible = false
+
+func _input(event):
+	if show_start_text:
+		$HUD/AnimationPlayer.play("start_game")
+		show_start_text = false
+
+func _on_button_pressed():
+	get_tree().reload_current_scene()
+
+func _on_button_2_pressed():
+	get_tree().change_scene_to_file('res://intro.tscn')

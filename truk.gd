@@ -2,6 +2,7 @@ extends VehicleBody3D
 
 signal collected(position)
 
+@export var active = true
 @onready var fleft = $FrontLeft
 @onready var fright = $FrontRight
 @onready var rleft = $RearLeft
@@ -22,7 +23,7 @@ func _ready():
 func _physics_process(delta):
 	steering = lerp(steering,Input.get_axis("right","left") * 0.4, 5*delta)
 
-	if not Input.is_action_pressed("forward") and not Input.is_action_pressed("back"):
+	if not active or (not Input.is_action_pressed("forward") and not Input.is_action_pressed("back")):
 		rleft.engine_force = 0
 		rright.engine_force = 0
 		rleft.brake = MAX_BRAKE

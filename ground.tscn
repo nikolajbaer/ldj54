@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvmf1l0bkardu"]
+
+[ext_resource type="PackedScene" uid="uid://ds71lufq562bg" path="res://ground_mesh.tscn" id="1_m0if5"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xvonk"]
+
+[node name="Ground" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("WorldBoundaryShape3D_xvonk")
+
+[node name="MeshInstance3D" parent="." instance=ExtResource("1_m0if5")]
