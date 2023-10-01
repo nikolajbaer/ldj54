@@ -1,3 +1,65 @@
-[gd_scene format=3 uid="uid://mtbgpve7sf4a"]
+[gd_scene load_steps=5 format=3 uid="uid://mtbgpve7sf4a"]
+
+[ext_resource type="PackedScene" uid="uid://dudwpffbginjr" path="res://block_3.tscn" id="1_jv4ed"]
+[ext_resource type="PackedScene" uid="uid://d0jtphdsdmiw8" path="res://block_2.tscn" id="2_8rahr"]
+[ext_resource type="PackedScene" uid="uid://ddvcv6d84ba80" path="res://block_4.tscn" id="3_h3pxt"]
+[ext_resource type="PackedScene" uid="uid://b1olobxgwklt1" path="res://block_1.tscn" id="4_dv16r"]
 
 [node name="BlockDev" type="Node3D"]
+
+[node name="Block1" parent="." instance=ExtResource("1_jv4ed")]
+
+[node name="Block13" parent="." instance=ExtResource("1_jv4ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 30)
+
+[node name="Block2" parent="." instance=ExtResource("1_jv4ed")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Block14" parent="." instance=ExtResource("1_jv4ed")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 30, 0, -30)
+
+[node name="Block3" parent="." instance=ExtResource("2_8rahr")]
+
+[node name="Block15" parent="." instance=ExtResource("2_8rahr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 30)
+
+[node name="Block4" parent="." instance=ExtResource("2_8rahr")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Block16" parent="." instance=ExtResource("2_8rahr")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30, 0, -30)
+
+[node name="Block5" parent="." instance=ExtResource("3_h3pxt")]
+
+[node name="Block6" parent="." instance=ExtResource("3_h3pxt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Block7" parent="." instance=ExtResource("3_h3pxt")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Block8" parent="." instance=ExtResource("3_h3pxt")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
+
+[node name="Block9" parent="." instance=ExtResource("4_dv16r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+
+[node name="Block10" parent="." instance=ExtResource("4_dv16r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -30)
+
+[node name="Block17" parent="." instance=ExtResource("4_dv16r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 30)
+
+[node name="Block18" parent="." instance=ExtResource("4_dv16r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30, 0, 30)
+
+[node name="Block19" parent="." instance=ExtResource("4_dv16r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -30)
+
+[node name="Block20" parent="." instance=ExtResource("4_dv16r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30, 0, -30)
+
+[node name="Block11" parent="." instance=ExtResource("4_dv16r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30, 0, 30)
+
+[node name="Block12" parent="." instance=ExtResource("4_dv16r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30, 0, 0)

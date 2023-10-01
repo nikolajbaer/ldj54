@@ -23,7 +23,7 @@ top_radius = 0.2
 bottom_radius = 0.2
 height = 0.5
 
-[node name="TrashCan" type="Node3D"]
+[node name="TrashCan" type="Node3D" groups=["trashcan"]]
 
 [node name="Lid" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.269435, 0)
@@ -44,7 +44,7 @@ node_a = NodePath("../Base")
 node_b = NodePath("../Lid")
 exclude_nodes_from_collision = false
 
-[node name="Base" type="RigidBody3D" parent="."]
+[node name="Base" type="RigidBody3D" parent="." groups=["trashcan", "trashcanbase"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

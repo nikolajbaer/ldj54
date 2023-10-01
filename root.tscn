@@ -1,12 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://iwwykf6jqgyr"]
+[gd_scene load_steps=19 format=3 uid="uid://iwwykf6jqgyr"]
 
 [ext_resource type="PackedScene" uid="uid://wps2a7uaehoy" path="res://truk.tscn" id="1_tjm0l"]
 [ext_resource type="Script" path="res://root.gd" id="1_yud12"]
 [ext_resource type="Script" path="res://CameraPivot.gd" id="2_tnvou"]
-[ext_resource type="PackedScene" uid="uid://b1olobxgwklt1" path="res://block_1.tscn" id="6_04648"]
-[ext_resource type="PackedScene" uid="uid://dudwpffbginjr" path="res://block_3.tscn" id="6_ogqyv"]
-[ext_resource type="PackedScene" uid="uid://ddvcv6d84ba80" path="res://block_4.tscn" id="7_1nlw4"]
-[ext_resource type="PackedScene" uid="uid://d0jtphdsdmiw8" path="res://block_2.tscn" id="7_i6ijd"]
+[ext_resource type="PackedScene" uid="uid://mtbgpve7sf4a" path="res://block_dev.tscn" id="4_c5na7"]
+[ext_resource type="PackedScene" uid="uid://cglm6c05plgc2" path="res://points.tscn" id="6_4f8v3"]
+[ext_resource type="PackedScene" uid="uid://dohqp1lfb65gc" path="res://pickup_zone.tscn" id="7_1dxwn"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xvonk"]
 
@@ -29,17 +28,38 @@ uv1_scale = Vector3(100, 100, 100)
 [sub_resource type="PlaneMesh" id="PlaneMesh_t1ij8"]
 lightmap_size_hint = Vector2i(5002, 5002)
 material = SubResource("StandardMaterial3D_eojsu")
-size = Vector2(1000, 1000)
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v7o7y"]
+size = Vector3(6, 2, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbeul"]
+transparency = 1
+albedo_color = Color(0.478431, 0.380392, 0, 0.0509804)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ygxar"]
+material = SubResource("StandardMaterial3D_jbeul")
+size = Vector3(6, 2, 6)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m3ae3"]
+
+[sub_resource type="Sky" id="Sky_unquq"]
+sky_material = SubResource("ProceduralSkyMaterial_m3ae3")
+
+[sub_resource type="Environment" id="Environment_0uwxr"]
+background_mode = 2
+sky = SubResource("Sky_unquq")
 
 [node name="root" type="Node3D"]
 script = ExtResource("1_yud12")
+metadata/_edit_lock_ = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.327086, 0.944995, 0, -0.944995, 0.327086, 0, 6.45612, 0)
 shadow_enabled = true
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.79198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2789, 0, -14.7494)
 script = ExtResource("2_tnvou")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
@@ -50,7 +70,7 @@ current = true
 one_shot = true
 
 [node name="Truk" parent="." instance=ExtResource("1_tjm0l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.79198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5839, -7.62939e-06, -14.4859)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -61,30 +81,57 @@ shape = SubResource("WorldBoundaryShape3D_xvonk")
 mesh = SubResource("PlaneMesh_t1ij8")
 skeleton = NodePath("../..")
 
-[node name="Block1" parent="." instance=ExtResource("6_04648")]
+[node name="BlockDev" parent="." instance=ExtResource("4_c5na7")]
 
-[node name="Block2" parent="." instance=ExtResource("6_04648")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30, 0, 0)
+[node name="PickupZone" parent="." instance=ExtResource("7_1dxwn")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.75183, 0, 11.9057)
 
-[node name="Block5" parent="." instance=ExtResource("7_i6ijd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+[node name="PickupZone2" parent="." instance=ExtResource("7_1dxwn")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11.7623, 0, 0.656781)
 
-[node name="Block3" parent="." instance=ExtResource("6_ogqyv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 20)
+[node name="PickupZone3" parent="." instance=ExtResource("7_1dxwn")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.28731, 0, -11.6199)
 
-[node name="Block6" parent="." instance=ExtResource("7_i6ijd")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30, 0, -20)
+[node name="PickupZone4" parent="." instance=ExtResource("7_1dxwn")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 11.9132, 0, 3.84436)
 
-[node name="Block4" parent="." instance=ExtResource("6_ogqyv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
+[node name="StartZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5294, 0, -14.4758)
 
-[node name="Block7" parent="." instance=ExtResource("7_1nlw4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.595266, 0)
+shape = SubResource("BoxShape3D_v7o7y")
 
-[node name="Block9" parent="." instance=ExtResource("7_1nlw4")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -35, 0, 30)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StartZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.979218, 0)
+mesh = SubResource("BoxMesh_ygxar")
 
-[node name="Block8" parent="." instance=ExtResource("7_1nlw4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -25)
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Elapsed" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 106.0
+offset_bottom = 31.0
+
+[node name="Score" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 1053.0
+offset_top = 4.0
+offset_right = 1146.0
+offset_bottom = 27.0
+
+[node name="points" parent="HUD" instance=ExtResource("6_4f8v3")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0uwxr")
 
 [connection signal="timeout" from="CameraPivot/Timer" to="CameraPivot" method="_on_timer_timeout"]
+[connection signal="collected" from="Truk" to="." method="_on_truk_collected"]
+[connection signal="body_entered" from="StartZone" to="." method="_on_start_zone_body_entered"]
+[connection signal="body_exited" from="StartZone" to="." method="_on_start_zone_body_exited"]

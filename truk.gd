@@ -1,5 +1,7 @@
 extends VehicleBody3D
 
+signal collected(position)
+
 @onready var fleft = $FrontLeft
 @onready var fright = $FrontRight
 @onready var rleft = $RearLeft
@@ -39,14 +41,23 @@ func _physics_process(delta):
 			anim.play("extend")
 			grabbing = 1
 	elif grabbing == 2:
-		print("retracting")
+		#print("retracting")
 		anim.play("retract")
 		grabbing = 3
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "extend":
-		print("grab finished")
+		#print("grab finished")
 		grabbing = 2
 	elif anim_name == "retract":
-		print("done retracting")
+		#print("done retracting")
 		grabbing = 0
+
+func _on_drop_zone_body_entered(body):
+	if body.is_in_group("trashcan"):
+		body.get_parent().add_to_group("collected")
+		if body.global_transform.basis.y.dot(global_transform.basis.x) > 0:
+			collected.emit(body.global_position)
+		else:
+			pass
+			#print("woops!")

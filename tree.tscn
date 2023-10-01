@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://idbllmmkrpkg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7id2c"]
+size = Vector3(0.5, 3, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0vyk"]
+albedo_color = Color(0.34902, 0.180392, 0.00784314, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cqcyy"]
+material = SubResource("StandardMaterial3D_e0vyk")
+top_radius = 0.23
+bottom_radius = 0.25
+height = 3.0
+radial_segments = 32
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_167c3"]
+albedo_color = Color(0.109804, 0.278431, 0.0313726, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dxbvp"]
+material = SubResource("StandardMaterial3D_167c3")
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hc6cf"]
+radius = 0.246734
+
+[node name="Tree" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["penalty"]]
+mass = 150.0
+max_contacts_reported = 1
+contact_monitor = true
+sleeping = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6772, 0)
+shape = SubResource("BoxShape3D_7id2c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("CylinderMesh_cqcyy")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.30581, 0.385576)
+mesh = SubResource("SphereMesh_dxbvp")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.452275, 2.3925, -0.314075)
+mesh = SubResource("SphereMesh_dxbvp")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.533809, 2.21934, -0.314075)
+mesh = SubResource("SphereMesh_dxbvp")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.247338, 2.85252, 0.0508451)
+mesh = SubResource("SphereMesh_dxbvp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.193597, 0)
+shape = SubResource("SphereShape3D_hc6cf")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.0405087, 0)
+mesh = SubResource("CylinderMesh_cqcyy")

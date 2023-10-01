@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wps2a7uaehoy"]
+[gd_scene load_steps=16 format=3 uid="uid://wps2a7uaehoy"]
 
 [ext_resource type="Script" path="res://truk.gd" id="1_w3x0k"]
 
@@ -143,10 +143,10 @@ tracks/0/path = NodePath("CharacterBody3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.7, 2.1, 2.4, 2.7, 3.2, 3.4, 3.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1, 1.7, 2.1, 2.4, 2.7, 3.2, 3.3, 3.8, 4.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.026, 0.25, 0.413), Vector3(-0.691, 0.25, 0.413), Vector3(-0.690797, 1.67704, 0.412957), Vector3(-0.490797, 1.69168, 0.412957), Vector3(-0.490797, 1.69168, 0.412957), Vector3(-0.690797, 1.67704, 0.412957), Vector3(-0.691, 0.25, 0.413), Vector3(-1.026, 0.25, 0.413), Vector3(-0.691, 0.25, 0.413)]
+"values": [Vector3(-1.026, 0.25, 0.413), Vector3(-0.691, 0.25, 0.413), Vector3(-0.690797, 1.67704, 0.412957), Vector3(-0.490797, 1.69168, 0.412957), Vector3(-0.490797, 1.69168, 0.412957), Vector3(-0.690797, 1.67704, 0.412957), Vector3(-0.691, 0.25, 0.413), Vector3(-0.691, 0.25, 0.413), Vector3(-1.026, 0.25, 0.413), Vector3(-0.691, 0.25, 0.413)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -167,7 +167,7 @@ tracks/2/path = NodePath("CharacterBody3D/Arm2:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 3.2, 3.5, 3.8, 4.4),
+"times": PackedFloat32Array(0, 0.3, 3.2, 3.9, 4.2, 4.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0.174533, 0), Vector3(0, -0.0261799, 0), Vector3(0, -0.0261799, 0), Vector3(0, 0.174533, 0), Vector3(0, 0.174533, 0), Vector3(0, 1.5708, 0)]
@@ -179,7 +179,7 @@ tracks/3/path = NodePath("CharacterBody3D/Arm1:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 3.2, 3.5, 3.8, 4.4),
+"times": PackedFloat32Array(0, 0.3, 3.2, 3.9, 4.2, 4.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, -0.174533, 0), Vector3(0, 0.0261799, 0), Vector3(0, 0.0261799, 0), Vector3(0, -0.174533, 0), Vector3(0, -0.174533, 0), Vector3(0, -1.5708, 0)]
@@ -192,10 +192,15 @@ _data = {
 "retract": SubResource("Animation_3pqbn")
 }
 
-[node name="Truk" type="VehicleBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6u03"]
+size = Vector3(1.23506, 0.446906, 1)
+
+[node name="Truk" type="VehicleBody3D" groups=["truk"]]
 mass = 100.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.25, 0)
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_w3x0k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -260,7 +265,7 @@ mesh = SubResource("CylinderMesh_7nf36")
 
 [node name="Gripper" type="Node3D" parent="."]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="Gripper"]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Gripper" groups=["truk"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.741, 0.25, 0.413)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Gripper/CharacterBody3D"]
@@ -272,7 +277,7 @@ shape = SubResource("ConvexPolygonShape3D_y6ebd")
 [node name="Arm1" type="Node3D" parent="Gripper/CharacterBody3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.226786)
 
-[node name="Arm1" type="CharacterBody3D" parent="Gripper/CharacterBody3D/Arm1"]
+[node name="Arm1" type="CharacterBody3D" parent="Gripper/CharacterBody3D/Arm1" groups=["truk"]]
 transform = Transform3D(-2.38419e-07, 0, 0.999999, 0, 0.999999, 0, -1, 0, -8.9407e-08, -0.262426, 0, -0.0162884)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Gripper/CharacterBody3D/Arm1/Arm1"]
@@ -284,7 +289,7 @@ shape = SubResource("ConvexPolygonShape3D_y6ebd")
 [node name="Arm2" type="Node3D" parent="Gripper/CharacterBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 0.999999, 0, -1, 0, -4.37114e-08, 0.00525606, 0, 0.261344)
 
-[node name="Arm1" type="CharacterBody3D" parent="Gripper/CharacterBody3D/Arm2"]
+[node name="Arm1" type="CharacterBody3D" parent="Gripper/CharacterBody3D/Arm2" groups=["truk"]]
 transform = Transform3D(2.98023e-08, 0, 1, 0, 0.999999, 0, -1, 0, 2.98023e-08, -0.242058, 0, -0.000214338)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Gripper/CharacterBody3D/Arm2/Arm1"]
@@ -298,4 +303,12 @@ libraries = {
 "": SubResource("AnimationLibrary_8q4ni")
 }
 
+[node name="DropZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41183, 0.257975)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DropZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.421432, 0)
+shape = SubResource("BoxShape3D_h6u03")
+
 [connection signal="animation_finished" from="Gripper/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="DropZone" to="." method="_on_drop_zone_body_entered"]
