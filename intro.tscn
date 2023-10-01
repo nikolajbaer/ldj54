@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwphobm22upuh"]
+[gd_scene load_steps=11 format=3 uid="uid://bwphobm22upuh"]
 
 [ext_resource type="Script" path="res://intro.gd" id="1_t3a2c"]
 [ext_resource type="PackedScene" uid="uid://wps2a7uaehoy" path="res://truk.tscn" id="2_yag37"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ds2kj74h24887" path="res://trash_can.tscn" id="3_8put4"]
 [ext_resource type="PackedScene" uid="uid://cvmf1l0bkardu" path="res://ground.tscn" id="4_jjt7k"]
 [ext_resource type="Texture2D" uid="uid://cdjaiocb5ffh7" path="res://trashtruckhero.png" id="6_2f1kk"]
+[ext_resource type="AudioStream" uid="uid://c3nssjqobbwxs" path="res://trash-truck-hero-theme.ogg" id="7_j311c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sbx4n"]
 
@@ -44,31 +45,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12607, -0.0880973, -0.5038
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Button" type="Button" parent="Control"]
-offset_left = 457.0
-offset_top = 493.0
-offset_right = 664.0
-offset_bottom = 559.0
-text = "START GAME"
-
-[node name="Button2" type="Button" parent="Control"]
-offset_left = 458.0
-offset_top = 572.0
-offset_right = 552.0
-offset_bottom = 615.0
-text = "EXIT"
-
-[node name="Button3" type="Button" parent="Control"]
-offset_left = 569.0
-offset_top = 572.0
-offset_right = 663.0
-offset_bottom = 615.0
-disabled = true
-text = "SCORES"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Right" type="Node2D" parent="Control"]
 
@@ -118,6 +99,57 @@ to grab trashcan
 Try It Now!"
 horizontal_alignment = 1
 
+[node name="TitlesVboxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.5
+offset_top = -66.0
+offset_right = 56.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Trashtruckhero" type="Sprite2D" parent="Control/TitlesVboxContainer"]
+position = Vector2(149, -31)
+texture = ExtResource("6_2f1kk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TitlesVboxContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Button" type="Button" parent="Control/TitlesVboxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "START GAME"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TitlesVboxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button2" type="Button" parent="Control/TitlesVboxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "EXIT"
+
+[node name="Button3" type="Button" parent="Control/TitlesVboxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+disabled = true
+text = "SCORES"
+
+[node name="CheckBox" type="CheckBox" parent="Control/TitlesVboxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enable Sounds and Music (not too loud)"
+
+[node name="CheckBox2" type="CheckBox" parent="Control/TitlesVboxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enable Mouse Look (better control)"
+
 [node name="Ground" parent="." instance=ExtResource("4_jjt7k")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -131,11 +163,13 @@ environment = SubResource("Environment_igkxb")
 wait_time = 3.0
 one_shot = true
 
-[node name="Trashtruckhero" type="Sprite2D" parent="."]
-position = Vector2(570, 462)
-texture = ExtResource("6_2f1kk")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_j311c")
+autoplay = true
 
 [connection signal="collected" from="Truk" to="." method="_on_truk_collected"]
-[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Control/TitlesVboxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/TitlesVboxContainer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="toggled" from="Control/TitlesVboxContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="toggled" from="Control/TitlesVboxContainer/VBoxContainer/CheckBox2" to="." method="_on_check_box_2_toggled"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

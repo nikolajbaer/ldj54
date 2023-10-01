@@ -42,7 +42,7 @@ func get_rotation_from_direction(look_direction:Vector3) -> Basis:
 	var x_axis = look_direction.cross(Vector3.UP)
 	return Basis(x_axis,Vector3.UP,-look_direction)	
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion and not auto_camera:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 

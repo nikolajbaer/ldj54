@@ -15,8 +15,9 @@ var trashcans
 var show_start_text = true
 	
 func _ready():
-	$HUD/StartText.visible = true
+	$HUD/StartPanel.visible = true
 	$HUD/ScorePanel.visible = false
+	$HUD/AnimationPlayer.stop()
 	$CameraPivot.set_truk(truk)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elapsed = null
@@ -28,6 +29,9 @@ func _ready():
 	trashcans = get_tree().get_nodes_in_group("trashcan")
 	for trashcan in trashcans:
 		trashcan.knocked_over.connect(_on_knocked_over)
+	show_start_text = true
+	var player_vars = get_node("/root/PlayerVariables")
+	$CameraPivot.auto_camera = not player_vars.mouse_look
 	
 func _physics_process(delta):
 	if elapsed != null:
@@ -99,10 +103,10 @@ func _on_knocked_over(position):
 	showScoreChange(-10,position)
 
 func _on_animation_player_animation_finished(anim_name):
-	$HUD/StartText.visible = false
+	$HUD/StartPanel.visible = false
 
 func _input(event):
-	if show_start_text:
+	if event is InputEventKey and show_start_text:
 		$HUD/AnimationPlayer.play("start_game")
 		show_start_text = false
 

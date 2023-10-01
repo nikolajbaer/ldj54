@@ -7,6 +7,7 @@ var trash_start_pos = null
 var camera
 
 func _ready():
+	AudioServer.set_bus_mute(0,true)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	trash_start_pos = $TrashCan.global_position
 	camera = get_viewport().get_camera_3d()
@@ -38,3 +39,11 @@ func _on_timer_timeout():
 	new_trash_can.global_position = trash_start_pos
 	trash_can = new_trash_can
 	add_child(new_trash_can)
+
+func _on_check_box_toggled(button_pressed):
+	AudioServer.set_bus_mute(0,not button_pressed)
+
+
+func _on_check_box_2_toggled(button_pressed):
+	var player_vars = get_node("/root/PlayerVariables")
+	player_vars.mouse_look = button_pressed

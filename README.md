@@ -1,0 +1,16 @@
+Ludum Dare 54 Entry
+
+"Limited Space"
+by Nikolaj Baer
+
+Credits:
+Some rubbish truck sounds derived from:
+https://freesound.org/people/acclivity/sounds/31057/
+
+The song i made:
+https://www.beepbox.co/#9n31s0k0l00e07t2ma7g0fj07r1i0o332T1v1ub1f10k8q011d23A0F1B7Q0000Pe800E179T5v1u50f0qwx10p511d08H-JJAArrqiih999h0E1b6T1v1u82f0q8x10l511d03AcFfB7Q0245P7788E2b27iT4v1uf0f0q011z6666ji8k8k3jSBKSJJAArriiiiii07JCABrzrrrrrrr00YrkqHrsrrrrjr005zrAqzrjzrrqr1jRjrqGGrrzsrsA099ijrABJJJIAzrrtirqrqjqixzsrAjrqjiqaqqysttAJqjikikrizrHtBJJAzArzrIsRCITKSS099ijrAJS____Qg99habbCAYrDzh00E0b4h4h4g0000014wd50000014h4h4000004h4h4w00000p22oFE_xBQCnipt9Bw9uCO-zbjhY4s6hS4tF7E4sAhR4tp6CnCGCCCCCBdvOnZQhFJvPbHF8YQLRK9wqo6C-CVdjYoJ8JgILVykAGpeFPnWkUarn-6KCNscFLag4RQQowpt1vhgpsRW3bEwWaq6qcDQQp580
+
+Everything else by me using Godot 4!
+
+Special thanks to my car and recycle bin for helping me with some sounds too :grin:
+

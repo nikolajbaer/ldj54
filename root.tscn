@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://iwwykf6jqgyr"]
+[gd_scene load_steps=17 format=3 uid="uid://iwwykf6jqgyr"]
 
 [ext_resource type="PackedScene" uid="uid://wps2a7uaehoy" path="res://truk.tscn" id="1_tjm0l"]
 [ext_resource type="Script" path="res://root.gd" id="1_yud12"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvmf1l0bkardu" path="res://ground.tscn" id="3_m18w7"]
 [ext_resource type="PackedScene" uid="uid://mtbgpve7sf4a" path="res://block_dev.tscn" id="4_c5na7"]
 [ext_resource type="PackedScene" uid="uid://dohqp1lfb65gc" path="res://pickup_zone.tscn" id="7_1dxwn"]
+[ext_resource type="AudioStream" uid="uid://c3nssjqobbwxs" path="res://trash-truck-hero-theme.ogg" id="7_iryue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v7o7y"]
 size = Vector3(6, 2, 6)
@@ -23,14 +24,14 @@ resource_name = "start_game"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StartText:modulate")
+tracks/0/path = NodePath("../StartPanel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_iadv6"]
@@ -38,7 +39,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StartText:modulate")
+tracks/0/path = NodePath("../StartPanel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -103,52 +104,44 @@ mesh = SubResource("BoxMesh_ygxar")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Elapsed" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 106.0
-offset_bottom = 31.0
+layout_mode = 1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 27.0
+text = "0"
 
 [node name="Score" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 1028.0
-offset_top = 4.0
-offset_right = 1146.0
-offset_bottom = 30.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -118.0
+offset_bottom = 26.0
+grow_horizontal = 0
 text = "Score: 0"
 
-[node name="StartText" type="Label" parent="HUD"]
-visible = false
-layout_mode = 0
-offset_left = 351.0
-offset_top = 225.0
-offset_right = 785.0
-offset_bottom = 407.0
-text = "Collect all the trash on this block as quickly as you can!
-
-The timer starts when you leave the yellow start zone.
-
-Watch out for cars, and try not to knock over trash cans!
-
-W/A/S/D or Arrow keys to move, Spacebar to pick up."
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
-libraries = {
-"": SubResource("AnimationLibrary_iw2uo")
-}
-
 [node name="ScorePanel" type="Panel" parent="HUD"]
-layout_mode = 0
-offset_left = 347.0
-offset_top = 196.0
-offset_right = 820.0
-offset_bottom = 435.0
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -238.0
+offset_top = -104.0
+offset_right = 244.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="HUD/ScorePanel"]
 layout_mode = 0
@@ -226,14 +219,64 @@ offset_bottom = 203.0
 text = "Exit
 "
 
+[node name="Label5" type="Label" parent="HUD/ScorePanel"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 215.0
+offset_right = 447.0
+offset_bottom = 272.0
+theme_override_font_sizes/font_size = 10
+text = "Ludum Dare 54 Compo entry by https://www.nikolajbaer.us
+Thanks for Playing!"
+horizontal_alignment = 1
+
+[node name="StartPanel" type="Panel" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.5
+offset_top = -123.5
+offset_right = 248.5
+offset_bottom = 123.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartText" type="Label" parent="HUD/StartPanel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 29.0
+offset_right = 452.0
+offset_bottom = 211.0
+text = "Collect all the trash on this block as quickly as you can!
+
+The timer starts when you leave the yellow start zone.
+
+Watch out for cars, and try not to knock over trash cans!
+
+W/A/S/D or Arrow keys to move, Spacebar to pick up."
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
+libraries = {
+"": SubResource("AnimationLibrary_iw2uo")
+}
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0uwxr")
 
 [node name="CameraPivot" parent="." instance=ExtResource("2_75wi6")]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_iryue")
+autoplay = true
+
 [connection signal="collected" from="Truk" to="." method="_on_truk_collected"]
 [connection signal="body_entered" from="StartZone" to="." method="_on_start_zone_body_entered"]
 [connection signal="body_exited" from="StartZone" to="." method="_on_start_zone_body_exited"]
-[connection signal="animation_finished" from="HUD/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="HUD/ScorePanel/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="HUD/ScorePanel/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="animation_finished" from="HUD/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

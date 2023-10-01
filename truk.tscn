@@ -1,6 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://wps2a7uaehoy"]
+[gd_scene load_steps=22 format=3 uid="uid://wps2a7uaehoy"]
 
 [ext_resource type="Script" path="res://truk.gd" id="1_w3x0k"]
+[ext_resource type="AudioStream" uid="uid://dmfyf83dob1wj" path="res://garbage_truck_audio.ogg" id="2_chxt2"]
+[ext_resource type="AudioStream" uid="uid://ddw0a74g58j3" path="res://engine_rev_audio.ogg" id="3_opsfd"]
+[ext_resource type="AudioStream" uid="uid://csue2wa4jrml" path="res://collect_grab_start.ogg" id="4_6sn4o"]
+[ext_resource type="AudioStream" uid="uid://bf3y6ih1n0lg1" path="res://collect_rubbish_sound.ogg" id="4_p8osg"]
+[ext_resource type="AudioStream" uid="uid://vfnxro1k3xch" path="res://trash_truk_brakes.ogg" id="6_aaily"]
+[ext_resource type="AudioStream" uid="uid://s2bsym5en7x7" path="res://truk_idle.ogg" id="7_b4y8l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gbdds"]
 size = Vector3(1.20223, 1.21879, 2.75)
@@ -310,5 +316,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41183, 0.257975)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.421432, 0)
 shape = SubResource("BoxShape3D_h6u03")
 
+[node name="CollectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_chxt2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_opsfd")
+
+[node name="CollectStartAudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6sn4o")
+
+[node name="RetractAudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p8osg")
+
+[node name="BrakesAudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_aaily")
+
+[node name="IdleAudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_b4y8l")
+autoplay = true
+
 [connection signal="animation_finished" from="Gripper/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DropZone" to="." method="_on_drop_zone_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
